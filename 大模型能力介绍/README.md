@@ -1,0 +1,144 @@
+## **目前产品使用大模型的基础功能**：
+
+**从目前比较多的对话产品的角度，但能量远不止于此**
+
+#### 1、按格式输出：
+
+`”帮我把这本书寄到江苏省南京市鼓楼区城泛悦广场T1楼中储智运,写张三收,电话是17521079283“`
+
+`要求：提取出上述信息的关键信息，有收件人(name),地址(address),电话号码(telephone),并以JSON的格式输出,key用英文,value使用原文中的语言,直接输出结果`
+
+**chatgpt4:**
+
+![按格式输出_chatgpt4](.\images\按格式输出_chatgpt4.png)
+
+他甚至能够帮你区分提问类型为：寄送物品
+
+**文心大模型3.5:**
+
+![按格式输出_文心3.5](.\images\按格式输出_文心3.5.png)
+
+
+
+#### 2、分类
+
+`根据给定的新闻标题,判断给新闻属于"政治","经济","科技","娱乐"中的哪一类,直接给出答案.
+“ChatGPT可以写电影剧本啦, 未来好莱坞大片将用这项技术”`
+
+![分类_chatgpt4](D:\workspace\python\reviewLLM\大模型能力介绍\images\分类_chatgpt4.png)
+
+![分类_文心3.5](D:\workspace\python\reviewLLM\大模型能力介绍\images\分类_文心3.5.png)
+
+#### 3、聚类
+
+`判断以下句子中是否是同一个意思的聚合在一起？`
+
+`月薪多少`
+
+`一个月能赚几个钱`
+
+ `吃饭多少钱` 
+
+`月薪不够花怎么办`
+
+`每个月赚的都没花的多咋整`
+
+`月入水平`
+
+`输出'[]'标识的数组，每类一组。直接给答案，不用分析，不用评论。`
+
+
+
+![聚类_chatgpt4](D:\workspace\python\reviewLLM\大模型能力介绍\images\聚类_chatgpt4.png)
+
+![聚类_文心3.5](D:\workspace\python\reviewLLM\大模型能力介绍\images\聚类_文心3.5.png)
+
+
+
+
+
+#### 4、互动
+
+`假设我们正在玩井字棋游戏。任何玩家如果在垂直、水平或对角线上有三个石子就赢了。棋盘的行由1、2、3标记。列由A、B、C标记。目前，石子的放置位置如下：`
+
+`1,A=O`
+
+`1,B=O`
+
+`1,C=X`
+
+`2,B=X`
+
+`请仅使用'I'、'-'、'_'、'O'、'X'来绘制当前棋盘。`
+
+`根据给定的石子位置，我们可以绘制出以下的棋盘：`
+
+![互动_chatgpt4](D:\workspace\python\reviewLLM\大模型能力介绍\images\互动_chatgpt4.png)
+
+![互动_文心3.5](D:\workspace\python\reviewLLM\大模型能力介绍\images\互动_文心3.5.png)
+
+这里面可以看出了文心效果要差一点
+
+
+
+`现在轮到“X”玩家了。他/她应该把石头放在哪里？`
+
+
+
+![互动2_chatgpt4](D:\workspace\python\reviewLLM\大模型能力介绍\images\互动2_chatgpt4.png)
+
+![互动2_文心3.5](D:\workspace\python\reviewLLM\大模型能力介绍\images\互动2_文心3.5.png)
+
+这里文心一言给出了两种方案
+
+
+
+#### 5、代码检查
+
+![代码](D:\workspace\python\reviewLLM\大模型能力介绍\images\代码.png)
+
+```
+帮我优化一下以下代码
+
+
+from langchain.prompts import PromptTemplate
+# 创建原始模板
+template = """您是一位专业的鲜花店文案撰写员。\n
+对于售价为 {price} 元的 {flower_name} ，您能提供一个吸引人的简短描述吗？
+"""
+# 根据原始模板创建LangChain提示模板
+prompt = PromptTemplate.from_template(template)
+# 打印LangChain提示模板的内容
+print(prompt)
+from dotenv import load_dotenv  # 用于加载环境变量
+
+load_dotenv()  # 加载 .env 文件中的环境变量
+
+#
+# 导入LangChain中的OpenAI模型接口
+from langchain_openai import OpenAI
+# 创建模型实例
+model = OpenAI(model_name='gpt-3.5-turbo')
+# 输入提示
+input = prompt.format(flower_name=["玫瑰"], price='50')
+# 得到模型的输出
+output = model(input)
+# 打印输出内容
+print(output)
+```
+
+![代码优化_chatgpt4](D:\workspace\python\reviewLLM\大模型能力介绍\images\代码优化_chatgpt4.png)
+
+![代码优化_文心3.5](D:\workspace\python\reviewLLM\大模型能力介绍\images\代码优化_文心3.5.png)
+
+#### 更多举例
+
+- **舆情分析：**从公司产品的评论中，分析哪些功能/元素是用户讨论最多的，评价是正向还是负向
+- **坐席质检：**检查客服/销售人员与用户的对话记录，判断是否有争吵、辱骂、不当言论，话术是否符合标准
+- **知识库：**让大模型基于私有知识回答问题
+- **零代码开发/运维：**自动规划任务，生成指令，自动执行
+- **AI 编程：**用 AI 编写代码，提升开发效率
+
+
+
+## 
