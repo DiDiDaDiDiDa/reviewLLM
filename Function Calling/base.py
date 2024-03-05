@@ -28,29 +28,3 @@ def print_json(data):
     else:
         print(data)
 
-
-def get_completion(messages, model="gpt-3.5-turbo"):
-    response = client.chat.completions.create(
-        model=model,
-        messages=messages,
-        temperature=0.7,  # 模型输出的随机性，0 表示随机性最小
-        tools=[{  # 用 JSON 描述函数。可以定义多个。由大模型决定调用谁。也可能都不调用
-            "type": "function",
-            "function": {
-                "name": "sum",
-                "description": "加法器，计算一组数的和",
-                "parameters": {
-                    "type": "object",
-                    "properties": {
-                        "numbers": {
-                            "type": "array",
-                            "items": {
-                                "type": "number"
-                            }
-                        }
-                    }
-                }
-            }
-        }],
-    )
-    return response.choices[0].message
