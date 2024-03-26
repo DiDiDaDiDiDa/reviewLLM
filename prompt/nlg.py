@@ -178,7 +178,7 @@ class DialogManager:
 
         # 拼装prompt调用chatgpt
         prompt_for_chatgpt = self._wrap(user_input, records)
-        print("===gpt-prompt===")
+        print("===gpt-prompts===")
         print(prompt_for_chatgpt)
 
         # 调用chatgpt获得回复

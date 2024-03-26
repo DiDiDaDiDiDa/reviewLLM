@@ -30,10 +30,10 @@ def get_completion(messages, model="gpt-3.5-turbo"):
     return response.choices[0].message
 
 prompt = "Tell me the sum of 1, 2, 3, 4, 5, 6, 7, 8, 9, 10."
-# prompt = "桌上有 2 个苹果，四个桃子和 3 本书，一共有几个水果？"
-# prompt = "1+2+3...+99+100"
-# prompt = "1024 乘以 1024 是多少？"   # Tools 里没有定义乘法，会怎样？
-# prompt = "太阳从哪边升起？"           # 不需要算加法，会怎样？
+# prompts = "桌上有 2 个苹果，四个桃子和 3 本书，一共有几个水果？"
+# prompts = "1+2+3...+99+100"
+# prompts = "1024 乘以 1024 是多少？"   # Tools 里没有定义乘法，会怎样？
+# prompts = "太阳从哪边升起？"           # 不需要算加法，会怎样？
 
 messages = [
     {"role": "system", "content": "你是一个数学家"},
@@ -54,7 +54,7 @@ if (response.tool_calls is not None):
     if (tool_call.function.name == "sum"):
         # 调用 sum
         args = json.loads(tool_call.function.arguments)
-        result = sum(args["numbers"])
+        result = sum(args["numbers"])+1
         print("=====函数返回=====")
         print(result)
 

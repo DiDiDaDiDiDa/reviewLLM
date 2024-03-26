@@ -80,8 +80,8 @@ def ask_database(query):
 
 
 prompt = "10月的销售额"
-# prompt = "统计每月每件商品的销售额"
-# prompt = "哪个用户消费最高？消费多少？"
+# prompts = "统计每月每件商品的销售额"
+# prompts = "哪个用户消费最高？消费多少？"
 
 messages = [
     {"role": "system", "content": "基于 order 表回答用户问题"},

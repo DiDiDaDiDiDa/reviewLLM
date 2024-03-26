@@ -24,7 +24,7 @@ def print_json(data):
 
 client = OpenAI()
 
-# 定义消息历史。先加入 system 消息，里面放入对话内容以外的 prompt
+# 定义消息历史。先加入 system 消息，里面放入对话内容以外的 prompts
 messages = [
     {
         "role": "system",

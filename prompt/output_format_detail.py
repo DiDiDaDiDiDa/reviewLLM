@@ -40,5 +40,5 @@ prompt = f"""
 {input_text}
 """
 
-# response = prompt_ex.get_completion(prompt)
+# response = prompt_ex.get_completion(prompts)
 # print(response)

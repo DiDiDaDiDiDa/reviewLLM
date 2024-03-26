@@ -14,7 +14,7 @@ input_text = """
 办个100G的套餐。
 """
 
-# prompt 模版。instruction 和 input_text 会被替换为上面的内容
+# prompts 模版。instruction 和 input_text 会被替换为上面的内容
 prompt = f"""
 {instruction}
 
@@ -23,5 +23,5 @@ prompt = f"""
 """
 
 # 调用大模型
-# response = prompt_ex.get_completion(prompt)
+# response = prompt_ex.get_completion(prompts)
 # print(response)

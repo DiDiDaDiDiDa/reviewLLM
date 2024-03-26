@@ -1,5 +1,7 @@
 import base
 import json
+
+
 def get_completion(messages, model="gpt-3.5-turbo"):
     response = base.client.chat.completions.create(
         model=model,
@@ -23,13 +25,13 @@ def get_completion(messages, model="gpt-3.5-turbo"):
                 }
             }
         }],
-        stream=True,    # 启动流式输出
+        stream=True,  # 启动流式输出
     )
     return response
 
 
 prompt = "1+2+3"
-# prompt = "你是谁"
+# prompts = "你是谁"
 
 messages = [
     {"role": "system", "content": "你是一个小学数学老师，你要教学生加法"},

@@ -6,7 +6,7 @@ def get_completion(messages, model="gpt-3.5-turbo"):
         model=model,
         messages=messages,
         temperature=0,  # 模型输出的随机性，0 表示随机性最小
-        seed=1024,      # 随机种子保持不变，temperature 和 prompt 不变的情况下，输出就会不变
+        seed=1024,      # 随机种子保持不变，temperature 和 prompts 不变的情况下，输出就会不变
         tool_choice="auto",  # 默认值，由 GPT 自主决定返回 function call 还是返回文字回复。也可以强制要求必须调用指定的函数，详见官方文档
         tools=[{
             "type": "function",
@@ -59,7 +59,7 @@ def get_completion(messages, model="gpt-3.5-turbo"):
 
 
 prompt = "我想在北京五道口附近喝咖啡，给我推荐几个"
-# prompt = "我到北京出差，给我推荐三里屯的酒店，和五道口附近的咖啡"
+# prompts = "我到北京出差，给我推荐三里屯的酒店，和五道口附近的咖啡"
 
 messages = [
     {"role": "system", "content": "你是一个地图通，你可以找到任何地址。"},

@@ -16,5 +16,5 @@ prompt = f"""
 """
 
 # 调用大模型
-# response = prompt_ex.get_completion(prompt)
+# response = prompt_ex.get_completion(prompts)
 # print(response)
