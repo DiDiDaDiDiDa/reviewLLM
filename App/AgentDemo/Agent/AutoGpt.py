@@ -1,6 +1,3 @@
- 
-
-
 import json
 
 from langchain.memory import ConversationTokenBufferMemory, VectorStoreRetrieverMemory
@@ -127,8 +124,6 @@ class AutoGpt:
         self.main_chain = (self.main_prompt | self.llm | StrOutputParser())
         # 最终一步的chain
         self.final_chain = (self.final_prompt | self.llm | StrOutputParser())
-
-
 
     def __init_short_term_memory(self) -> BaseChatMemory:
         short_term_memory = ConversationTokenBufferMemory(

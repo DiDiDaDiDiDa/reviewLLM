@@ -25,7 +25,10 @@ def main():
     )
 
     # 存储长时记忆的向量数据库
-    db = Chroma.from_documents([Document(page_content="")], OpenAIEmbeddings(model="text-embedding-ada-002"))
+    db = Chroma.from_documents(
+        [Document(page_content="")],
+        OpenAIEmbeddings(model="text-embedding-ada-002")
+    )
     retriever = db.as_retriever(
         search_kwargs={"k": 1}
     )

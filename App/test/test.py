@@ -1,24 +1,34 @@
-from langchain_core.output_parsers import PydanticOutputParser
-from langchain_core.prompts import PromptTemplate
-from pydantic import BaseModel, Field
+import os
+from dotenv import load_dotenv, find_dotenv
+from langchain.chains.conversation.base import ConversationChain
+from langchain.chains.llm import LLMChain
+from langchain.chains.sequential import SimpleSequentialChain
+from langchain_core.prompts import ChatPromptTemplate
 
+_ = load_dotenv(find_dotenv())  # read local .env file
 
-class Student(BaseModel):
-    name: str = Field(description="学生的姓名")
-    age: str = Field(description="学生的年龄")
+from langchain_openai import ChatOpenAI
 
-student_query = "告诉我一个学生的信息"
-
-parser = PydanticOutputParser(pydantic_object=Student)
-
-prompt = PromptTemplate(
-    template="回答下面问题.\n{format_instructions}\n{query}\n",
-    input_variables=["query"],
-    partial_variables={"format_instructions": parser.get_format_instructions()+"用中文回答"},
+llm = ChatOpenAI()
+# prompt template 1
+first_prompt = ChatPromptTemplate.from_template(
+    "描述生产{product}的公司的一个最佳名称是什么？"
 )
 
-_input = prompt.format_prompt(query=student_query)
+# Chain 1
+chain_one = LLMChain(llm=llm, prompt=first_prompt,verbose=True)
 
-output = model(_input.to_string())
-print(output)
-print(parser.parse(output))
+# prompt template 2
+second_prompt = ChatPromptTemplate.from_template(
+    "为以下公司编写 20 个字的描述：{company_name}”"
+)
+# chain 2
+chain_two = LLMChain(llm=llm, prompt=second_prompt,verbose=True)
+
+# 将chain1和chain2组合在一起生成一个新的chain.
+overall_simple_chain = SimpleSequentialChain(chains=[chain_one, chain_two],
+                                             verbose=True)
+# product = "床上用品"
+# 执行新的chain
+result = overall_simple_chain.invoke({"input": "床上用品"})
+print(result)
